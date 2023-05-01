@@ -102,6 +102,16 @@ class TestJsonFormatHandler(unittest.TestCase):
             self.assertEqual(3884, row['id'], f"ID field is {row['id']} - expected it to be 3884.")
         self.assertEqual(expected_row_count, row_count, f"Expected row_count to be {expected_row_count} but was {row_count}")
 
+    def test_one_row_jsonl_file(self):
+        test_filename_uri = './tap_spreadsheets_anywhere/test/one-row-sample-jsonl-multiline.json'
+        iterator = format_handler.get_row_iterator(TEST_TABLE_SPEC['tables'][3], test_filename_uri)
+        expected_row_count = 1
+        row_count = 0
+        for row in iterator:
+            row_count += 1
+            self.assertEqual(3884, row['id'], f"ID field is {row['id']} - expected it to be 3884.")
+        self.assertEqual(expected_row_count, row_count, f"Expected row_count to be {expected_row_count} but was {row_count}")
+
     def test_jsonl_file_detect(self):
         test_filename_uri = './tap_spreadsheets_anywhere/test/sample.jsonl'
         iterator = format_handler.get_row_iterator(TEST_TABLE_SPEC['tables'][4], test_filename_uri)
