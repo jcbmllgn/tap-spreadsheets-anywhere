@@ -19,7 +19,8 @@ setup(
         'openpyxl',
         'xlrd',
         'paramiko',
-        'azure-storage-blob>=12.14.0'
+        'azure-storage-blob>=12.14.0',
+        'xmltodict>=0.13.0',
     ],
     entry_points="""
     [console_scripts]
